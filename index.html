@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Quote Generator | Pseudo-Profound Business Wisdom</title>
+    <meta name="description" content="Generate hilariously profound startup quotes that sound deep but mean nothing. Perfect for your next pitch deck or LinkedIn post!">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background elements */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            top: 20%;
+            right: 10%;
+            width: 60px;
+            height: 60px;
+            background: white;
+            transform: rotate(45deg);
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            bottom: 10%;
+            left: 20%;
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 20px;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: #6b7280;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .header .tagline {
+            font-size: 0.9rem;
+            color: #9ca3af;
+            font-style: italic;
+        }
+
+        .quote-section {
+            margin: 40px 0;
+        }
+
+        .quote-display {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .quote-display:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .quote-display::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 4rem;
+            color: #cbd5e1;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .quote-display::after {
+            content: '"';
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 4rem;
+            color: #cbd5e1;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .quote-text {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: #1e293b;
+            font-weight: 500;
+            font-style: italic;
+            max-width: 90%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .loading {
+            color: #64748b;
+            font-size: 1.2rem;
+        }
+
+        .controls {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #4b5563;
+            border: 2px solid #e5e7eb;
+        }
+
+        .btn-secondary:hover {
+            background: #f9fafb;
+            border-color: #d1d5db;
+            transform: translateY(-2px);
+        }
+
+        .btn-share {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .btn-share:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .batch-quotes {
+            margin-top: 40px;
+            display: none;
+        }
+
+        .batch-quotes.show {
+            display: block;
+        }
+
+        .batch-quotes h3 {
+            color: #374151;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .quote-batch {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .mini-quote {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: left;
+            font-size: 1rem;
+            color: #4b5563;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .mini-quote:hover {
+            border-color: #667eea;
+            transform: translateX(4px);
+        }
+
+        .stats {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #92400e;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #a16207;
+            font-weight: 500;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+        }
+
+        .footer p {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .social-share {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .social-share.show {
+            display: block;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 12px;
+        }
+
+        .social-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .twitter {
+            background: #1da1f2;
+            color: white;
+        }
+
+        .linkedin {
+            background: #0077b5;
+            color: white;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .quote-text {
+                font-size: 1.2rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Startup Quote Generator</h1>
+            <p class="subtitle">Pseudo-Profound Business Wisdom Generator</p>
+            <p class="tagline">Perfect to appear smart on LinkedIn and Twitter /s</p>
+        </div>
+
+        <div class="quote-section">
+            <div class="quote-display" id="quoteDisplay">
+                <div class="quote-text" id="quoteText">Click "Generate Wisdom" to receive your dose of startup enlightenment!</div>
+            </div>
+
+            <div class="controls">
+                <button class="btn btn-primary" onclick="generateQuote()">
+                    ✨ Generate Wisdom
+                </button>
+                <button class="btn btn-secondary" onclick="generateBatch()">
+                    📝 Generate 5 Quotes
+                </button>
+                <button class="btn btn-share" onclick="toggleShare()">
+                    📤 Share Quote
+                </button>
+            </div>
+
+            <div class="social-share" id="socialShare">
+                <p><strong>Share this profound wisdom:</strong></p>
+                <div class="social-buttons">
+                    <a href="#" class="social-btn twitter" id="twitterShare" target="_blank">Share on Twitter</a>
+                    <a href="#" class="social-btn linkedin" id="linkedinShare" target="_blank">Share on LinkedIn</a>
+                </div>
+                <button class="btn btn-secondary" onclick="copyToClipboard()" style="margin-top: 12px; padding: 8px 16px; font-size: 0.9rem;">
+                    📋 Copy Quote
+                </button>
+            </div>
+        </div>
+
+        <div class="batch-quotes" id="batchQuotes">
+            <h3>🎯 Your Batch of Startup Wisdom</h3>
+            <div class="quote-batch" id="quoteBatch"></div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" id="quotesGenerated">0</div>
+                <div class="stat-label">Quotes Generated</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="wisdomLevel">Novice</div>
+                <div class="stat-label">Wisdom Level</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="vcImpressed">0%</div>
+                <div class="stat-label">VCs Impressed</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>🎭 A parody generator for pseudo-profound startup wisdom</p>
+            <p>Built with ❤️ by <a href="https://twitter.com/AZenGuy" target="_blank">@AZenGuy</a> for the startup community | <a href="https://github.com/yourusername/startup-quote-generator" target="_blank">View on GitHub</a></p>
+        </div>
+    </div>
+
+    <div class="notification" id="notification">Quote copied to clipboard!</div>
+
+    <script>
+        // JavaScript version of the PHP quote generator
+        class StartupQuoteGenerator {
+            constructor() {
+                // Check if localStorage is available
+                this.storageAvailable = this.isStorageAvailable();
+                
+                this.subjects = [
+                    "Bangalore", "Venture capital", "Quantum startups", "The unpredictable",
+                    "Our motivations", "The venture", "Eternal moats", "The marketplace",
+                    "Your startup", "Intuition", "Tiger Global", "IPL", "Business insight",
+                    "Twitter threads", "Greatness", "Growth mindset", "Your strategy",
+                    "Everything", "Freedom", "Culture", "Evolution", "The founders ego",
+                    "Flywheel", "The world", "Hidden meaning", "Cred", "Newsletters",
+                    "Substack", "The web of life", "Your portfolio", "Amazon", "Jeff Bezos",
+                    "The human startup system", "Making a product", "The key to MVP", "Innocence"
+                ];
+
+                this.verbs = [
+                    "relies on", "depends on", "embraces", "requires", "illuminates",
+                    "is the ground of", "creates", "inspires", "nurtures", "gives rise to",
+                    "is rooted in", "projects onto", "explores", "is the wisdom of",
+                    "is inherent in", "is the path to", "experiences", "comprehends",
+                    "explains", "transcends", "is the continuity of", "regulates",
+                    "serves", "shapes", "transforms", "fascinates", "influences",
+                    "expresses", "opens", "constructs", "grows through", "exists as",
+                    "reflects", "belongs to", "is the foundation of", "alleviates",
+                    "is at the heart of", "corresponds to", "results from"
+                ];
+
+                this.adjectives = [
+                    "infinite", "cosmic", "unique", "visible", "boundless", "quantum",
+                    "subtle", "universal", "intrinsic", "ephemeral", "total", "pure",
+                    "positive", "essential", "spontaneous", "karmic", "deep", "unparalleled",
+                    "incredible", "exponential", "intricate", "existential", "precious",
+                    "subjective", "immortal", "dimensionless", "formless", "innumerable"
+                ];
+
+                this.objects = [
+                    "joy", "creativity", "life", "possibilities", "sensations", "experiences",
+                    "energy", "happiness", "reality", "knowledge", "facts", "opportunities",
+                    "chaos", "truth", "destiny", "success", "choices", "acceptance",
+                    "silence", "positivity", "excellence", "belonging", "abstract beauty",
+                    "balance", "fulfillment", "bliss", "actions", "potentiality", "mysteries",
+                    "marvel", "self-knowledge", "mortality", "timelessness", "force fields",
+                    "brightness", "neural networks", "human observation", "love",
+                    "boundaries", "brains", "phenomena", "miracles", "observations"
+                ];
+
+                this.simpleSubjects = ["Startups", "Companies", "Men", "Executives", "Businesses", "Power users"];
+                this.simpleObjects = ["Capital", "Funding", "Lending", "Mortgage", "Moats", "Creators", "ESOPs"];
+
+                // Initialize quote count with fallback
+                this.quotesGenerated = this.getStoredValue('quotesGenerated', 0);
+                this.updateStats();
+            }
+
+            // Check if localStorage is available
+            isStorageAvailable() {
+                try {
+                    const test = 'test';
+                    localStorage.setItem(test, test);
+                    localStorage.removeItem(test);
+                    return true;
+                } catch (e) {
+                    console.warn('localStorage not available, using session storage');
+                    return false;
+                }
+            }
+
+            // Get stored value with fallback
+            getStoredValue(key, defaultValue) {
+                try {
+                    if (this.storageAvailable) {
+                        const stored = localStorage.getItem(key);
+                        return stored ? parseInt(stored) : defaultValue;
+                    } else {
+                        // Fallback to sessionStorage or memory
+                        const stored = sessionStorage.getItem(key);
+                        return stored ? parseInt(stored) : defaultValue;
+                    }
+                } catch (e) {
+                    console.warn('Storage access failed, using default value');
+                    return defaultValue;
+                }
+            }
+
+            // Set stored value with fallback
+            setStoredValue(key, value) {
+                try {
+                    if (this.storageAvailable) {
+                        localStorage.setItem(key, value.toString());
+                    } else {
+                        // Fallback to sessionStorage
+                        sessionStorage.setItem(key, value.toString());
+                    }
+                } catch (e) {
+                    console.warn('Storage write failed');
+                }
+            }
+
+            generateQuote() {
+                const random = Math.floor(Math.random() * 100) + 1;
+                
+                if (random <= 2) {
+                    return this.generateSimpleQuote();
+                } else {
+                    return this.generateComplexQuote();
+                }
+            }
+
+            generateSimpleQuote() {
+                const subject = this.subjects[Math.floor(Math.random() * this.subjects.length)];
+                const object = this.objects[Math.floor(Math.random() * this.objects.length)];
+                return `${subject} are ${object}.`;
+            }
+
+            generateComplexQuote() {
+                const subject = this.subjects[Math.floor(Math.random() * this.subjects.length)];
+                const verb = this.verbs[Math.floor(Math.random() * this.verbs.length)];
+                const adjective = this.adjectives[Math.floor(Math.random() * this.adjectives.length)];
+                const object = this.objects[Math.floor(Math.random() * this.objects.length)];
+                
+                return `${subject} ${verb} ${adjective} ${object}.`;
+            }
+
+            generateMultiple(count = 5) {
+                const quotes = [];
+                for (let i = 0; i < count; i++) {
+                    quotes.push(this.generateQuote());
+                }
+                return quotes;
+            }
+
+            incrementQuoteCount() {
+                this.quotesGenerated++;
+                this.setStoredValue('quotesGenerated', this.quotesGenerated);
+                this.updateStats();
+            }
+
+            updateStats() {
+                document.getElementById('quotesGenerated').textContent = this.quotesGenerated;
+                
+                let wisdomLevel = 'Novice';
+                let vcImpressed = '0%';
+                
+                if (this.quotesGenerated > 50) {
+                    wisdomLevel = 'Guru';
+                    vcImpressed = '95%';
+                } else if (this.quotesGenerated > 20) {
+                    wisdomLevel = 'Expert';
+                    vcImpressed = '75%';
+                } else if (this.quotesGenerated > 10) {
+                    wisdomLevel = 'Advanced';
+                    vcImpressed = '50%';
+                } else if (this.quotesGenerated > 5) {
+                    wisdomLevel = 'Intermediate';
+                    vcImpressed = '25%';
+                }
+                
+                document.getElementById('wisdomLevel').textContent = wisdomLevel;
+                document.getElementById('vcImpressed').textContent = vcImpressed;
+            }
+        }
+
+        // Initialize generator
+        const generator = new StartupQuoteGenerator();
+        let currentQuote = '';
+
+        function generateQuote() {
+            const quoteText = document.getElementById('quoteText');
+            const quoteDisplay = document.getElementById('quoteDisplay');
+            
+            // Loading state
+            quoteText.innerHTML = '<div class="loading">🧠 Channeling startup wisdom...</div>';
+            
+            setTimeout(() => {
+                currentQuote = generator.generateQuote();
+                quoteText.textContent = currentQuote;
+                generator.incrementQuoteCount();
+                
+                // Hide social share
+                document.getElementById('socialShare').classList.remove('show');
+                
+                // Add animation
+                quoteDisplay.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    quoteDisplay.style.transform = 'scale(1)';
+                }, 150);
+            }, 800);
+        }
+
+        function generateBatch() {
+            const batchQuotes = document.getElementById('batchQuotes');
+            const quoteBatch = document.getElementById('quoteBatch');
+            
+            const quotes = generator.generateMultiple(5);
+            quoteBatch.innerHTML = '';
+            
+            quotes.forEach((quote, index) => {
+                const quoteDiv = document.createElement('div');
+                quoteDiv.className = 'mini-quote';
+                quoteDiv.textContent = `${index + 1}. ${quote}`;
+                quoteDiv.onclick = () => {
+                    currentQuote = quote;
+                    document.getElementById('quoteText').textContent = quote;
+                    document.getElementById('socialShare').classList.remove('show');
+                    quoteDiv.style.background = '#667eea';
+                    quoteDiv.style.color = 'white';
+                    setTimeout(() => {
+                        quoteDiv.style.background = 'white';
+                        quoteDiv.style.color = '#4b5563';
+                    }, 1000);
+                };
+                quoteBatch.appendChild(quoteDiv);
+            });
+            
+            batchQuotes.classList.add('show');
+            generator.quotesGenerated += 5;
+            generator.updateStats();
+            
+            // Scroll to batch
+            batchQuotes.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleShare() {
+            const socialShare = document.getElementById('socialShare');
+            
+            if (!currentQuote || currentQuote.includes('Click "Generate Wisdom"')) {
+                alert('Please generate a quote first!');
+                return;
+            }
+            
+            socialShare.classList.toggle('show');
+            
+            // Update social links without including the current URL
+            const twitterText = encodeURIComponent(`"${currentQuote}" - Generated by Startup Wisdom Generator 🚀 by @AZenGuy`);
+            const linkedinText = encodeURIComponent(`"${currentQuote}" - Generated by the Startup Wisdom Generator. Perfect pseudo-profound business insight! 🚀`);
+            
+            // Don't include current URL to avoid about:srcdoc issue
+            document.getElementById('twitterShare').href = `https://twitter.com/intent/tweet?text=${twitterText}`;
+            document.getElementById('linkedinShare').href = `https://www.linkedin.com/sharing/share-offsite/?summary=${linkedinText}`;
+        }
+
+        function copyToClipboard() {
+            if (!currentQuote) return;
+            
+            // Modern clipboard API with fallback
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(currentQuote).then(() => {
+                    showNotification('Quote copied to clipboard!');
+                }).catch((err) => {
+                    console.warn('Clipboard API failed, using fallback');
+                    fallbackCopyToClipboard(currentQuote);
+                });
+            } else {
+                fallbackCopyToClipboard(currentQuote);
+            }
+        }
+
+        function fallbackCopyToClipboard(text) {
+            try {
+                // Create temporary textarea
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                
+                // Try to copy using execCommand
+                const successful = document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                if (successful) {
+                    showNotification('Quote copied to clipboard!');
+                } else {
+                    showNotification('Copy failed - please select and copy manually');
+                }
+            } catch (err) {
+                console.warn('Fallback copy failed:', err);
+                showNotification('Copy not supported - please select and copy manually');
+            }
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Add storage info to footer
+        function addStorageInfo() {
+            const footer = document.querySelector('.footer');
+            const generator = new StartupQuoteGenerator();
+            
+            if (!generator.storageAvailable) {
+                const storageWarning = document.createElement('p');
+                storageWarning.style.color = '#f59e0b';
+                storageWarning.style.fontSize = '0.8rem';
+                storageWarning.style.marginTop = '10px';
+                storageWarning.innerHTML = '⚠️ Progress tracking limited - open via web server for full functionality';
+                footer.appendChild(storageWarning);
+            }
+        }
+
+        // Initialize everything
+        window.addEventListener('load', () => {
+            addStorageInfo();
+            setTimeout(generateQuote, 500);
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                generateQuote();
+            }
+        });
+    </script>
+</body>
+</html>
