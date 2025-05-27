@@ -493,50 +493,174 @@
                 // Check if localStorage is available
                 this.storageAvailable = this.isStorageAvailable();
                 
-                this.subjects = [
-                    "Bangalore", "Venture capital", "Quantum startups", "The unpredictable",
-                    "Our motivations", "The venture", "Eternal moats", "The marketplace",
-                    "Your startup", "Intuition", "Tiger Global", "IPL", "Business insight",
-                    "Twitter threads", "Greatness", "Growth mindset", "Your strategy",
-                    "Everything", "Freedom", "Culture", "Evolution", "The founders ego",
-                    "Flywheel", "The world", "Hidden meaning", "Cred", "Newsletters",
-                    "Substack", "The web of life", "Your portfolio", "Amazon", "Jeff Bezos",
-                    "The human startup system", "Making a product", "The key to MVP", "Innocence"
-                ];
+              // Updated arrays with Indian startup buzzwords
+// Replace your existing arrays with these enhanced versions
 
-                this.verbs = [
-                    "relies on", "depends on", "embraces", "requires", "illuminates",
-                    "is the ground of", "creates", "inspires", "nurtures", "gives rise to",
-                    "is rooted in", "projects onto", "explores", "is the wisdom of",
-                    "is inherent in", "is the path to", "experiences", "comprehends",
-                    "explains", "transcends", "is the continuity of", "regulates",
-                    "serves", "shapes", "transforms", "fascinates", "influences",
-                    "expresses", "opens", "constructs", "grows through", "exists as",
-                    "reflects", "belongs to", "is the foundation of", "alleviates",
-                    "is at the heart of", "corresponds to", "results from"
-                ];
+this.subjects = [
+    // Original subjects
+    "Bangalore", "Venture capital", "Quantum startups", "The unpredictable",
+    "Our motivations", "The venture", "Eternal moats", "The marketplace",
+    "Your startup", "Intuition", "Tiger Global", "IPL", "Business insight",
+    "Twitter threads", "Greatness", "Growth mindset", "Your strategy",
+    "Everything", "Freedom", "Culture", "Evolution", "The founders ego",
+    "Flywheel", "The world", "Hidden meaning", "Cred", "Newsletters",
+    "Substack", "The web of life", "Your portfolio", "Amazon", "Jeff Bezos",
+    "The human startup system", "Making a product", "The key to MVP", "Innocence",
+    
+    // Indian Companies & Unicorns
+    "Flipkart", "Paytm", "Byju's", "Ola", "Swiggy", "Zomato", "Dream11",
+    "Razorpay", "Freshworks", "Zerodha", "Nykaa", "PolicyBazaar", "Unacademy",
+    "WhiteHat Jr", "Vedantu", "Cars24", "Meesho", "PhonePe", "CRED",
+    "Lenskart", "Urban Company", "BigBasket", "Blinkit", "OYO", "Udaan",
+    "Pine Labs", "Delhivery", "ShareChat", "Jio Platforms", "Ather Energy",
+    "Boat", "Mamaearth", "Sugar Cosmetics",
+    
+    // Indian Startup Personalities
+    "Sachin Bansal", "Binny Bansal", "Vijay Shekhar Sharma", "Bhavish Aggarwal",
+    "Deepinder Goyal", "Sriharsha Majety", "Harsh Jain", "Harshil Mathur",
+    "Shashank ND", "Girish Mathrubootham", "Nithin Kamath", "Falguni Nayar",
+    "Gaurav Munjal", "Kiran Mazumdar-Shaw", "Kunal Shah", "Peyush Bansal",
+    "Abhiraj Bhal", "Varun Khaitan", "Ritesh Agarwal", "Sanjeev Bikhchandani",
+    
+    // Business Models & Phenomena
+    "Unicorn factory", "Soonicorn dreams", "Decacorn ambitions", "Zebra startups",
+    "Cockroach resilience", "B2B marketplace", "B2C platform", "D2C revolution",
+    "C2C commerce", "Subscription economics", "Freemium strategy", "Marketplace aggregation",
+    "On-demand services", "Hyperlocal delivery", "Last-mile connectivity", "Omnichannel presence",
+    "Phygital experience", "Quick commerce", "Dark stores", "Ghost kitchens",
+    "Asset-light models", "Platform economy", "Network effects", "Viral coefficient",
+    "Growth hacking", "Performance marketing", "Influencer partnerships", "Content-led growth",
+    
+    // Funding & Investment Terms
+    "Series A funding", "Series B rounds", "Series C valuations", "Pre-seed capital",
+    "Seed funding", "Bridge rounds", "Down rounds", "Up rounds", "Valuation markup",
+    "Valuation markdown", "Burn rate optimization", "Runway extension", "Unit economics",
+    "LTV/CAC ratios", "Monthly Active Users", "Gross Merchandise Value", "Total Addressable Market",
+    "Product-Market Fit", "Go-to-Market strategy", "Minimum Viable Product", "Proof of Concept",
+    "SoftBank money", "Masayoshi Son magic", "Ratan Tata backing", "Family office funding",
+    "HNI investment", "Strategic investors", "Corporate venture capital", "Government grants",
+    "Venture debt", "Revenue-based financing", "Convertible notes", "SAFE agreements",
+    "Employee Stock Options",
+    
+    // Regional/Cultural Terms
+    "Jugaad innovation", "Desi solutions", "Bharatiya approach", "Swadeshi technology",
+    "Tier-2 penetration", "Tier-3 expansion", "Bharat market", "India opportunity",
+    "Regional language support", "Vernacular content", "Digital divide bridging",
+    "Rural internet adoption", "Mobile-first strategy", "Offline-to-online transformation",
+    "Cash-on-delivery preference", "Trust deficit solutions", "Community-driven growth",
+    
+    // Technology Buzzwords
+    "Artificial Intelligence", "Machine Learning algorithms", "Deep Learning models",
+    "Natural Language Processing", "Computer Vision", "Blockchain technology",
+    "Cryptocurrency adoption", "Web3 revolution", "Metaverse experiences", "NFT marketplace",
+    "DeFi protocols", "Smart contracts", "IoT solutions", "Edge computing", "Cloud-first architecture",
+    "Microservices", "API-first approach", "Low-code platforms", "No-code solutions",
+    "Headless commerce", "Progressive Web Apps", "React Native development", "Flutter framework",
+    
+    // Trend Words
+    "Startup winter", "Funding winter", "Layoff season", "Hiring spree", "Acqui-hire strategy",
+    "Pivot methodology", "Failed fast approach", "Bootstrapped success", "Profitability pressure",
+    "IPO readiness", "SPAC listing", "Reverse merger", "Strategic exit", "Fire sale",
+    "Down round protection", "Liquidation preferences", "Anti-dilution rights", "Tag-along rights",
+    "Drag-along rights",
+    
+    // Business Lingo
+    "Disruptive innovation", "Ecosystem play", "Platform thinking", "Viral growth",
+    "Organic expansion", "Inorganic growth", "Horizontal scaling", "Vertical integration",
+    "Cross-selling opportunities", "Up-selling potential", "Customer acquisition cost",
+    "Customer lifetime value", "Monthly recurring revenue", "Annual recurring revenue",
+    "Churn rate optimization", "Retention strategies", "Engagement metrics", "Conversion funnel",
+    "Growth loops", "Digital transformation", "Cloud migration", "Data analytics",
+    "Business intelligence", "Predictive modeling", "Real-time processing", "Batch processing",
+    "ETL pipelines", "Data lakes", "Data warehousing"
+];
 
-                this.adjectives = [
-                    "infinite", "cosmic", "unique", "visible", "boundless", "quantum",
-                    "subtle", "universal", "intrinsic", "ephemeral", "total", "pure",
-                    "positive", "essential", "spontaneous", "karmic", "deep", "unparalleled",
-                    "incredible", "exponential", "intricate", "existential", "precious",
-                    "subjective", "immortal", "dimensionless", "formless", "innumerable"
-                ];
+this.verbs = [
+    // Original verbs
+    "relies on", "depends on", "embraces", "requires", "illuminates",
+    "is the ground of", "creates", "inspires", "nurtures", "gives rise to",
+    "is rooted in", "projects onto", "explores", "is the wisdom of",
+    "is inherent in", "is the path to", "experiences", "comprehends",
+    "explains", "transcends", "is the continuity of", "regulates",
+    "serves", "shapes", "transforms", "fascinates", "influences",
+    "expresses", "opens", "constructs", "grows through", "exists as",
+    "reflects", "belongs to", "is the foundation of", "alleviates",
+    "is at the heart of", "corresponds to", "results from",
+    
+    // New startup-focused verbs
+    "disrupts", "scales", "monetizes", "optimizes", "leverages",
+    "synergizes with", "democratizes", "revolutionizes", "streamlines",
+    "accelerates", "amplifies", "orchestrates", "facilitates",
+    "empowers", "validates", "iterates on", "pivots around",
+    "aggregates", "consolidates", "personalizes", "gamifies",
+    "automates", "integrates with", "converges on", "maximizes",
+    "harnesses", "cultivates", "incubates", "generates",
+    "penetrates", "captures", "delivers", "enables",
+    "drives", "fuels", "powers", "builds upon"
+];
 
-                this.objects = [
-                    "joy", "creativity", "life", "possibilities", "sensations", "experiences",
-                    "energy", "happiness", "reality", "knowledge", "facts", "opportunities",
-                    "chaos", "truth", "destiny", "success", "choices", "acceptance",
-                    "silence", "positivity", "excellence", "belonging", "abstract beauty",
-                    "balance", "fulfillment", "bliss", "actions", "potentiality", "mysteries",
-                    "marvel", "self-knowledge", "mortality", "timelessness", "force fields",
-                    "brightness", "neural networks", "human observation", "love",
-                    "boundaries", "brains", "phenomena", "miracles", "observations"
-                ];
+this.adjectives = [
+    // Original adjectives
+    "infinite", "cosmic", "unique", "visible", "boundless", "quantum",
+    "subtle", "universal", "intrinsic", "ephemeral", "total", "pure",
+    "positive", "essential", "spontaneous", "karmic", "deep", "unparalleled",
+    "incredible", "exponential", "intricate", "existential", "precious",
+    "subjective", "immortal", "dimensionless", "formless", "innumerable",
+    
+    // New startup adjectives
+    "disruptive", "scalable", "viral", "sustainable", "agile",
+    "data-driven", "AI-powered", "blockchain-enabled", "cloud-native",
+    "mobile-first", "user-centric", "revenue-generating", "cost-effective",
+    "innovative", "cutting-edge", "next-generation", "revolutionary",
+    "transformative", "breakthrough", "game-changing", "paradigm-shifting",
+    "seamless", "frictionless", "intuitive", "responsive", "adaptive",
+    "personalized", "automated", "intelligent", "predictive", "real-time",
+    "omnichannel", "cross-platform", "full-stack", "end-to-end",
+    "mission-critical", "enterprise-grade", "production-ready", "market-leading",
+    "award-winning", "venture-backed", "bootstrapped", "profitable",
+    "hypergrowth", "unicorn-level", "world-class", "globally-competitive"
+];
 
-                this.simpleSubjects = ["Startups", "Companies", "Men", "Executives", "Businesses", "Power users"];
-                this.simpleObjects = ["Capital", "Funding", "Lending", "Mortgage", "Moats", "Creators", "ESOPs"];
+this.objects = [
+    // Original objects
+    "joy", "creativity", "life", "possibilities", "sensations", "experiences",
+    "energy", "happiness", "reality", "knowledge", "facts", "opportunities",
+    "chaos", "truth", "destiny", "success", "choices", "acceptance",
+    "silence", "positivity", "excellence", "belonging", "abstract beauty",
+    "balance", "fulfillment", "bliss", "actions", "potentiality", "mysteries",
+    "marvel", "self-knowledge", "mortality", "timelessness", "force fields",
+    "brightness", "neural networks", "human observation", "love",
+    "boundaries", "brains", "phenomena", "miracles", "observations",
+    
+    // New startup objects
+    "synergies", "solutions", "platforms", "ecosystems", "marketplaces",
+    "algorithms", "datasets", "insights", "metrics", "KPIs",
+    "conversions", "acquisitions", "retention", "engagement", "monetization",
+    "scalability", "profitability", "sustainability", "innovation", "disruption",
+    "transformation", "optimization", "automation", "personalization", "gamification",
+    "integration", "convergence", "diversification", "expansion", "penetration",
+    "adoption", "utilization", "deployment", "implementation", "execution",
+    "performance", "efficiency", "productivity", "competitiveness", "differentiation",
+    "value propositions", "business models", "revenue streams", "cost structures",
+    "customer segments", "market opportunities", "growth potential", "strategic advantages",
+    "competitive moats", "network effects", "economies of scale", "first-mover advantages",
+    "market share", "brand equity", "customer loyalty", "user experience",
+    "product-market fit", "go-to-market strategies", "growth hacking", "viral coefficients",
+    "unit economics", "lifetime value", "acquisition costs", "burn rates",
+    "runway extension", "funding rounds", "valuation multiples", "exit strategies"
+];
+
+// Updated simple quote arrays for Indian context
+this.simpleSubjects = [
+    "Startups", "Unicorns", "Founders", "VCs", "Entrepreneurs", "Innovators",
+    "Disruptors", "Builders", "Creators", "Hustlers", "Visionaries", "Game-changers"
+];
+
+this.simpleObjects = [
+    "the future", "disruption", "innovation", "scale", "growth", "success",
+    "transformation", "revolution", "evolution", "progress", "change", "impact",
+    "value", "solutions", "opportunities", "potential", "excellence", "greatness"
+];
 
                 // Initialize quote count with fallback
                 this.quotesGenerated = this.getStoredValue('quotesGenerated', 0);
